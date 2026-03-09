@@ -1,0 +1,100 @@
+<header class="header">
+  <div class="container">
+    <div class="header__container">
+      <div class="header__top">
+        <a href="/" class="header__logo">
+          <img src="/images/logo.svg" alt="logo" />
+        </a>
+
+        <form class="header__search search-form">
+          <input
+            type="text"
+            name="search"
+            class="search-form__input"
+            placeholder="Пошук зошитів, ручок та іншого..."
+          />
+          <button type="submit" class="search-form__button cursor">
+            <svg width="24px" height="24px">
+              <use href="/images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
+
+        <div class="header__actions">
+          <a href="/schoolkits" class="header__action">
+            <svg
+              class="header__action-icon header__action-icon--deal"
+              width="32px"
+              height="32px"
+            >
+              <use href="/images/icons.svg#icon-deal"></use>
+            </svg>
+            <span class="header__action-text header__action-text--deal"
+              >School deals</span
+            >
+          </a>
+          <a href="/login" class="header__action">
+            <svg class="header__action-icon" width="32px" height="32px">
+              <use href="/images/icons.svg#icon-login"></use>
+            </svg>
+            <span class="header__action-text">Sign Up/Sign In</span>
+          </a>
+          <button type="button" class="header__action cursor">
+            <svg class="header__action-icon" width="32px" height="32px">
+              <use href="/images/icons.svg#icon-cart"></use>
+            </svg>
+            <span class="header__action-text">Кошик</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="header__bottom">
+        <ul class="header__category category-menu">
+          <li class="category-menu__item">
+            <a href="/category/writing" class="category-menu__link"
+              >Письмове приладдя
+            </a>
+
+            <div class="category-menu__dropdown dropdown-menu">
+              <div class="dropdown-menu__grid">
+                <a href="/product/pens" class="dropdown-menu__item">
+                  <div class="dropdown-menu__image">
+                    <img src="/images/categories/pen.png" alt="Pen" />
+                  </div>
+                  <span class="dropdown-menu__title">0.1 Ручки</span>
+                </a>
+
+                <a href="/product/pensils" class="dropdown-menu__item">
+                  <div class="dropdown-menu__image">
+                    <img src="/images/categories/pensil.png" alt="Pensil" />
+                  </div>
+                  <span class="dropdown-menu__title">0.2 Олівці</span>
+                </a>
+
+                <a href="/product/markers" class="dropdown-menu__item">
+                  <div class="dropdown-menu__image">
+                    <img src="/images/categories/marker.png" alt="Marker" />
+                  </div>
+                  <span class="dropdown-menu__title">0.3 Маркери</span>
+                </a>
+
+                <a href="/product/leners" class="dropdown-menu__item">
+                  <div class="dropdown-menu__image">
+                    <img src="/images/categories/liner.png" alt="Liner" />
+                  </div>
+                  <span class="dropdown-menu__title">0.4 Лінери</span>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="category-menu__item">Паперова продукція</li>
+          <li class="category-menu__item">Школа та навчання</li>
+          <li class="category-menu__item">Офісне приладдя</li>
+          <li class="category-menu__item">Творчість та хобі</li>
+          <li class="category-menu__item">Подарунки</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

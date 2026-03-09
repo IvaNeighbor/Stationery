@@ -1,0 +1,29 @@
+{
+  "name": "web-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "sass": "sass src/scss/main.scss public/styles/style.css --watch",
+    "sass-build": "sass src/scss/main.scss public/styles/style.css --no-source-map",
+    "browser": "browser-sync start --proxy localhost:3000 --files \"public/**/*, views/**/*\"",
+    "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run browser\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14",
+    "sass": "^1.97.3"
+  },
+  "dependencies": {
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
+  }
+}

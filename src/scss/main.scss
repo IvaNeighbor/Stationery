@@ -1,0 +1,15 @@
+// 1. Налаштування та змінні
+@import "utils/variables";
+@import "utils/fonts";
+@import "utils/utils";
+
+// 2. Базові стилі
+@import "base";
+
+// 3. Компоненти (маленькі блоки)
+@import "components/category-menu";
+@import "components/dropdown-menu";
+
+// 4. Структура (великі блоки)
+@import "layout/container";
+@import "layout/header";

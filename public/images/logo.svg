@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 85" width="260" height="85" preserveAspectRatio="xMinYMid meet">
+  <g transform="translate(5, 5)">
+    <path d="M15,10 L15,40 C15,48 22,55 30,55 C38,55 45,48 45,40 L45,15 L38,15 L38,40 C38,44 34,48 30,48 C26,48 22,44 22,40 L22,10 L15,10 Z" fill="#2A5CAA"/>
+    <polygon points="15,10 18.5,0 22,10" fill="#2A5CAA"/>
+    <rect x="25" y="15" width="23" height="7" rx="2" fill="#F5A623"/> 
+  </g>
+
+  <text x="65" y="35" font-family="'Public Sans', sans-serif" font-size="28" font-weight="800" fill="#222222">Канц</text>
+  <text x="145" y="35" font-family="'Public Sans', sans-serif" font-size="28" font-weight="800" fill="#2A5CAA">Світ</text>
+  
+  <text x="65" y="55" font-family="'Public Sans', sans-serif" font-size="11" font-weight="500" fill="#777777" letter-spacing="1.2">ВСЕ ДЛЯ ОФІСУ ТА ШКОЛИ</text>
+</svg>
