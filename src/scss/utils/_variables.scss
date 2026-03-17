@@ -1,5 +1,5 @@
 $black-500: #222222;
-$black-100: #d9d9d9;
+$grey-100: #d9d9d9;
 $white-500: #ffffff;
 $white-100: #f3f9fb;
 $yellow-500: #fc7901;
@@ -12,12 +12,12 @@ $red-100: lighten($red-500, 20%);
 :root {
   --color-primary-dark: #{$black-500};
   --color-primary-light: #{$white-500};
-  --color-secondary-dark: #{$black-100};
+  --color-secondary-dark: #{$grey-100};
   --color-secondary-light: #{$white-100};
   --color-brand-light: #{$yellow-100};
   --color-brand-dark: #{$yellow-500};
-  --color-brand-additional: #{$blue-100};
-  --color-brand-additional: #{$blue-500};
-  --color-brand-accent: #{$red-100};
-  --color-brand-accent: #{$red-500};
+  --color-additional-light: #{$blue-100};
+  --color-additional-dark: #{$blue-500};
+  --color-accent-light: #{$red-100};
+  --color-accent-dark: #{$red-500};
 }

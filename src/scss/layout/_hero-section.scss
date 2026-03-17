@@ -1,0 +1,60 @@
+.hero-section {
+  &__slider {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 0 36px;
+  }
+
+  &__button {
+    position: absolute;
+    top: 250px;
+    width: 94px;
+    height: 94px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid var(--color-primary-light);
+    border-radius: 100%;
+    background-color: var(--color-secondary-light);
+    cursor: pointer;
+    z-index: 5;
+
+    &--prev {
+      transform: rotate(90deg);
+      left: -12px;
+    }
+
+    &--next {
+      transform: rotate(-90deg);
+      right: -12px;
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 40px !important; // Відступ знизу
+    left: 80px !important; // Зміщуємо ліворуч (рівняємо по тексту)
+    width: auto !important; // Щоб контейнер не розтягувався на всю ширину
+    text-align: left;
+    z-index: 10;
+  }
+
+  // Стилізуємо кожну окрему крапочку
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff !important; // Використовуй !important, якщо колір не міняється
+    opacity: 0.5;
+    border-radius: 50%;
+    margin: 0 4px !important; // Відступи між крапками
+    transition: all 0.3s ease;
+
+    // Стиль для активної крапки (робимо її "пігулкою")
+    &-active {
+      width: 30px;
+      border-radius: 4px;
+      opacity: 1;
+      background-color: #ffffff !important;
+    }
+  }
+}

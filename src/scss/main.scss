@@ -9,7 +9,10 @@
 // 3. Компоненти (маленькі блоки)
 @import "components/category-menu";
 @import "components/dropdown-menu";
+@import "components/hero-card";
 
 // 4. Структура (великі блоки)
 @import "layout/container";
 @import "layout/header";
+@import "layout/section";
+@import "layout/hero-section";

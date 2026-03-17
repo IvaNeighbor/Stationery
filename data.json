@@ -1,0 +1,28 @@
+{
+  "heroBanners": [
+    {
+      "title": "Новий рівень твоєї творчості!",
+      "accent": "Маркери-лінери Touch",
+      "description": "Отримуй -20% на перший набір для скетчингу.",
+      "cardLink": "/news/markers",
+      "cardImage": "/images/hero/markers.png",
+      "cardImgTitle": "Набір маркерів Touch для скетчингу"
+    },
+    {
+      "title": "Все для навчання!",
+      "accent": "Зошити та щоденники",
+      "description": "Велика колекція до нового навчального року.",
+      "cardLink": "/catalog/paper",
+      "cardImage": "/images/hero/notebooks.png",
+      "cardImgTitle": "Шкільні зошити та щоденники"
+    },
+    {
+      "title": "Твори разом з нами",
+      "accent": "Акварель та пензлі",
+      "description": "Набори для професіоналів та початківців.",
+      "cardLink": "/catalog/art",
+      "cardImage": "/images/hero/art-supplies.png",
+      "cardImgTitle": "Фарби акварельні та пензлі для малювання"
+    }
+  ]
+}

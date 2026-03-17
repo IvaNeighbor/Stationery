@@ -8,9 +8,8 @@
 
   &__top {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 90px;
   }
 
   &__actions {
@@ -25,6 +24,7 @@
     gap: 6px;
     border: none;
     background-color: transparent;
+    padding: 0;
   }
 
   &__action:not(:last-child) {
@@ -33,13 +33,10 @@
   }
 
   &__action-icon {
-    fill: none;
-    stroke: var(--color-primary-dark);
-    stroke-width: 2px;
+    fill: var(--color-primary-dark);
 
     &--deal {
       fill: var(--color-brand-dark);
-      stroke: none;
     }
   }
 
@@ -57,15 +54,14 @@
 
 .search-form {
   position: relative;
-  border-radius: 10px;
 
   &__input {
-    background-color: var(--color-secondary-light);
-    border: none;
-    border-radius: 10px;
     width: 356px;
     height: 48px;
     padding: 15px 72px 15px 44px;
+    background-color: var(--color-secondary-light);
+    border: none;
+    border-radius: 10px;
   }
 
   &__button {
@@ -74,8 +70,6 @@
     left: 4px;
     border: none;
     background-color: transparent;
-    fill: none;
-    stroke: var(--color-primary-dark);
-    stroke-width: 2px;
+    fill: var(--color-primary-dark);
   }
 }

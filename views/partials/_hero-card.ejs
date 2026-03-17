@@ -1,0 +1,15 @@
+<article class="hero-card">
+  <div class="hero-card__content">
+    <h2 class="hero-card__title"><%= cardTitle %></h2>
+    <p class="hero-card__accent textUpper"><%= cardAccent %></p>
+    <p class="hero-card__text"><%= cardText %></p>
+    <% if(cardLink) { %>
+      <a class="hero-card__button textUpper" href="<%= cardLink %>"
+      >Переглянути пропозицію</a
+    >
+    <% } %>
+  </div>
+  <div class="hero-card__image">
+    <img src="<%= cardImage %>" alt="<%= cardImgTitle %>" />
+  </div>
+</article>
