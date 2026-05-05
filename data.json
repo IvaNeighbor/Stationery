@@ -24,5 +24,87 @@
       "cardImage": "/images/hero/art-supplies.png",
       "cardImgTitle": "Фарби акварельні та пензлі для малювання"
     }
+  ],
+
+  "categories": [
+    {
+      "name": "Письмове приладдя",
+      "slug": "writing-supplies",
+      "subcategories": [
+        { "title": "Ручки", "href": "/category/draw-product/pens", "image": "/images/categories/pen.png" },
+        { "title": "Олівці", "href": "/category/draw-product/pensils", "image": "/images/categories/pensil.png" },
+        { "title": "Маркери", "href": "/category/draw-product/markers", "image": "/images/categories/marker.png" },
+        { "title": "Лінери", "href": "/category/draw-product/leners", "image": "/images/categories/liner.png" }
+      ]
+    },
+    {
+      "name": "Паперова продукція",
+      "slug": "paper-products",
+      "subcategories": [
+        { "title": "Зошити", "href": "/category/paper-products/notebooks", "image": "/images/categories/pen.png" },
+        { "title": "Блокноти", "href": "/category/paper-products/notepads", "image": "/images/categories/pen.png" },
+        { "title": "Папір для друку", "href": "/category/paper-products/printing-paper", "image": "/images/categories/pen.png" },
+        { "title": "Кольоровий папір", "href": "/category/paper-products/color-paper", "image": "/images/categories/pen.png" }
+      ]
+    },
+    {
+      "name": "Школа та навчання",
+      "slug": "school",
+      "subcategories": [
+        { "title": "Рюкзаки", "href": "/category/school/backpacks", "image": "/images/categories/pen.png" },
+        { "title": "Пенали", "href": "/category/school/pencil-cases", "image": "/images/categories/pen.png" },
+        { "title": "Щоденники", "href": "/category/school/diaries", "image": "/images/categories/pen.png" },
+        { "title": "Набори для креслення", "href": "/category/school/drawing-sets", "image": "/images/categories/pen.png" }
+      ]
+    },
+    {
+      "name": "Офісне приладдя",
+      "slug": "office",
+      "subcategories": [
+        { "title": "Папки та файли", "href": "/category/office/folders", "image": "/images/categories/pen.png" },
+        { "title": "Степлери", "href": "/category/office/staplers", "image": "/images/categories/pen.png" },
+        { "title": "Органайзери", "href": "/category/office/organizers", "image": "/images/categories/pen.png" },
+        { "title": "Скріпки", "href": "/category/office/paper-clip", "image": "/images/categories/pen.png" }
+      ]
+    },
+    {
+      "name": "Творчість та хобі",
+      "slug": "creativity",
+      "subcategories": [
+        { "title": "Фарби", "href": "/category/creativity/paints", "image": "/images/categories/pen.png" },
+        { "title": "Пластилін", "href": "/category/creativity/plasticine", "image": "/images/categories/pen.png" },
+        { "title": "Мольберти", "href": "/category/creativity/canvases", "image": "/images/categories/pen.png" },
+        { "title": "Набори для творчості", "href": "/category/creativity/creativity-kits", "image": "/images/categories/pen.png" }
+      ]
+    },
+    {
+      "name": "Подарунки",
+      "slug": "gifts",
+      "subcategories": [
+        { "title": "Подарункові бокси", "href": "/category/gifts/gift-boxes", "image": "/images/categories/pen.png" },
+        { "title": "Елітні ручки", "href": "/category/gifts/premium-pens", "image": "/images/categories/pen.png" },
+        { "title": "Настільні ігри", "href": "/category/gifts/board-games", "image": "/images/categories/pen.png" },
+        { "title": "Упаковка та листівки", "href": "/category/gifts/wrapping-cards", "image": "/images/categories/pen.png" }
+      ]
+    }
+  ],
+  
+  "products": [
+    {
+      "name": "Зошит А5, 48 арк. (клітинка)",
+      "description": "Якісний папір, чітка лінівка. Ідеально для конспектів.",
+      "price": 25.50,
+      "brand": "Школярик",
+      "image": "/images/categories/pen.png",
+      "subTitle": "Зошити"
+    },
+    {
+      "name": "Ручка BIC Round Stic",
+      "description": "Класична кулькова ручка, синій колір.",
+      "price": 12.00,
+      "brand": "BIC",
+      "image": "/images/categories/pen.png",
+      "subTitle": "Ручки"
+    }
   ]
 }

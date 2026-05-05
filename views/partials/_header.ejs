@@ -7,12 +7,7 @@
         </a>
 
         <form class="header__search search-form">
-          <input
-            type="text"
-            name="search"
-            class="search-form__input"
-            placeholder="Пошук зошитів, ручок та іншого..."
-          />
+          <input type="text" name="search" class="search-form__input" placeholder="Пошук зошитів, ручок та іншого..." />
           <button type="submit" class="search-form__button cursor">
             <svg width="24px" height="24px">
               <use href="/images/icons.svg#icon-search"></use>
@@ -22,16 +17,10 @@
 
         <div class="header__actions">
           <a href="/schoolkits" class="header__action">
-            <svg
-              class="header__action-icon header__action-icon--deal"
-              width="32px"
-              height="32px"
-            >
+            <svg class="header__action-icon header__action-icon--deal" width="32px" height="32px">
               <use href="/images/icons.svg#icon-deal"></use>
             </svg>
-            <span class="header__action-text header__action-text--deal"
-              >School deals</span
-            >
+            <span class="header__action-text header__action-text--deal">School deals</span>
           </a>
           <a href="/login" class="header__action">
             <svg class="header__action-icon" width="32px" height="32px">
@@ -50,9 +39,10 @@
 
       <div class="header__bottom">
         <ul class="header__category category-menu">
+          <% categories.forEach(category => { %>
           <li class="category-menu__item">
             <button type="button" class="category-menu__link">
-              Письмове приладдя
+              <%= category.name %>
               <svg class="category-menu__icon" width="18px" height="18px">
                 <use href="/images/icons.svg#icon-arrowDown"></use>
               </svg>
@@ -60,328 +50,18 @@
 
             <div class="category-menu__dropdown dropdown-menu">
               <div class="dropdown-menu__grid">
-                <a
-                  href="/category/draw-product/pens"
-                  class="dropdown-menu__item"
-                >
+                <% category.subcategories.forEach(sub => { %>
+                <a href="<%= sub.href %>" class="dropdown-menu__item">
                   <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Ручки" />
+                    <img src="<%= sub.image %>" alt="<%= sub.title %>">
                   </div>
-                  <span class="dropdown-menu__title">Ручки</span>
+                  <span class="dropdown-menu__title"><%= sub.title %></span>
                 </a>
-
-                <a
-                  href="/category/draw-product/pensils"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pensil.png" alt="Олівці" />
-                  </div>
-                  <span class="dropdown-menu__title">Олівці</span>
-                </a>
-
-                <a
-                  href="/category/draw-product/markers"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/marker.png" alt="Маркери" />
-                  </div>
-                  <span class="dropdown-menu__title">Маркери</span>
-                </a>
-
-                <a
-                  href="/category/draw-product/leners"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/liner.png" alt="Лінери" />
-                  </div>
-                  <span class="dropdown-menu__title">Лінери</span>
-                </a>
+                <% }); %>
               </div>
-            </div>
+               </div>
           </li>
-
-          <li class="category-menu__item">
-            <button type="button" class="category-menu__link">
-              Паперова продукція
-              <svg class="category-menu__icon" width="18px" height="18px">
-                <use href="/images/icons.svg#icon-arrowDown"></use>
-              </svg>
-            </button>
-
-            <div class="category-menu__dropdown dropdown-menu">
-              <div class="dropdown-menu__grid">
-                <a
-                  href="/category/paper-products/notebooks"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Зошит" />
-                  </div>
-                  <span class="dropdown-menu__title">Зошити</span>
-                </a>
-
-                <a
-                  href="/category/paper-products/notepads"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Блокнот" />
-                  </div>
-                  <span class="dropdown-menu__title">Блокноти</span>
-                </a>
-
-                <a
-                  href="/category/paper-products/printing-paper"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Папір для друку"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Папір для друку</span>
-                </a>
-
-                <a
-                  href="/category/paper-products/color-paper"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Кольоровий папір"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Кольоровий папір</span>
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li class="category-menu__item">
-            <button type="button" class="category-menu__link">
-              Школа та навчання
-              <svg class="category-menu__icon" width="18px" height="18px">
-                <use href="/images/icons.svg#icon-arrowDown"></use>
-              </svg>
-            </button>
-
-            <div class="category-menu__dropdown dropdown-menu">
-              <div class="dropdown-menu__grid">
-                <a
-                  href="/category/school/backpacks"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Рюкзаки" />
-                  </div>
-                  <span class="dropdown-menu__title">Рюкзаки</span>
-                </a>
-
-                <a
-                  href="/category/school/pencil-cases"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Пенали" />
-                  </div>
-                  <span class="dropdown-menu__title">Пенали</span>
-                </a>
-
-                <a href="/category/school/diaries" class="dropdown-menu__item">
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Щоденники" />
-                  </div>
-                  <span class="dropdown-menu__title">Щоденники</span>
-                </a>
-
-                <a
-                  href="/category/school/drawing-sets"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Набори для креслення"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Набори для креслення</span>
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li class="category-menu__item">
-            <button type="button" class="category-menu__link">
-              Офісне приладдя
-              <svg class="category-menu__icon" width="18px" height="18px">
-                <use href="/images/icons.svg#icon-arrowDown"></use>
-              </svg>
-            </button>
-
-            <div class="category-menu__dropdown dropdown-menu">
-              <div class="dropdown-menu__grid">
-                <a href="/category/office/folders" class="dropdown-menu__item">
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Папки та файли"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Папки та файли</span>
-                </a>
-
-                <a href="/category/office/staplers" class="dropdown-menu__item">
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Степлери" />
-                  </div>
-                  <span class="dropdown-menu__title">Степлери</span>
-                </a>
-
-                <a
-                  href="/category/office/organizers"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Органайзери" />
-                  </div>
-                  <span class="dropdown-menu__title">Органайзери</span>
-                </a>
-
-                <a
-                  href="/category/office/paper-clip"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Скріпки" />
-                  </div>
-                  <span class="dropdown-menu__title">Скріпки</span>
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li class="category-menu__item">
-            <button type="button" class="category-menu__link">
-              Творчість та хобі
-              <svg class="category-menu__icon" width="18px" height="18px">
-                <use href="/images/icons.svg#icon-arrowDown"></use>
-              </svg>
-            </button>
-
-            <div class="category-menu__dropdown dropdown-menu">
-              <div class="dropdown-menu__grid">
-                <a
-                  href="/category/creativity/paints"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Фарби" />
-                  </div>
-                  <span class="dropdown-menu__title">Фарби</span>
-                </a>
-
-                <a
-                  href="/category/creativity/plasticine"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Пластилін" />
-                  </div>
-                  <span class="dropdown-menu__title">Пластилін</span>
-                </a>
-
-                <a
-                  href="/category/creativity/canvases"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Мольберти" />
-                  </div>
-                  <span class="dropdown-menu__title">Мольберти</span>
-                </a>
-
-                <a
-                  href="/category/creativity/creativity-kits"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Набори для творчості"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Набори для творчості</span>
-                </a>
-              </div>
-            </div>
-          </li>
-
-          <li class="category-menu__item">
-            <button type="button" class="category-menu__link">
-              Подарунки
-              <svg class="category-menu__icon" width="18px" height="18px">
-                <use href="/images/icons.svg#icon-arrowDown"></use>
-              </svg>
-            </button>
-
-            <div class="category-menu__dropdown dropdown-menu">
-              <div class="dropdown-menu__grid">
-                <a
-                  href="/category/gifts/gift-boxes"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Подарункові бокси"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Подарункові бокси</span>
-                </a>
-
-                <a
-                  href="/category/gifts/premium-pens"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img src="/images/categories/pen.png" alt="Елітні ручки" />
-                  </div>
-                  <span class="dropdown-menu__title">Елітні ручки</span>
-                </a>
-
-                <a
-                  href="/category/gifts/board-games"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Настільні ігри"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Настільні ігри</span>
-                </a>
-
-                <a
-                  href="/category/gifts/wrapping-cards"
-                  class="dropdown-menu__item"
-                >
-                  <div class="dropdown-menu__image">
-                    <img
-                      src="/images/categories/pen.png"
-                      alt="Упаковка та листівки"
-                    />
-                  </div>
-                  <span class="dropdown-menu__title">Упаковка та листівки</span>
-                </a>
-              </div>
-            </div>
-          </li>
+          <% }); %>
         </ul>
       </div>
     </div>

@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Банери
+model HeroBanner {
+  id            Int     @id @default(autoincrement())
+  title         String
+  accent        String
+  description   String
+  cardLink      String
+  cardImage     String
+  cardImgTitle  String
+}
+
+// Головні категорії
+model Category {
+  id            Int           @id @default(autoincrement())
+  name          String
+  slug          String        @unique
+  subcategories Subcategory[]
+}
+
+// Підкатегорії
+model Subcategory {
+  id         Int      @id @default(autoincrement())
+  title      String
+  href       String
+  image      String
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  products   Product[] // ДОДАТИ ЦЕЙ РЯДОК
+}
+
+model Product {
+  id            Int         @id @default(autoincrement())
+  name          String
+  description   String
+  price         Float
+  brand         String      // Для фільтрації (вимога ТЗ)
+  image         String
+  subcategoryId Int
+  subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+}
+
+// Користувач
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String  // Тут будемо зберігати ХЕШ, а не пароль!
+  role     Role    @default(USER)
+  createdAt DateTime @default(now())
+}

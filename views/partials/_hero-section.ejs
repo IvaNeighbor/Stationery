@@ -3,28 +3,30 @@
     <div class="hero-section__slider">
       <div class="swiper">
         <div class="swiper-wrapper">
-        <% banners.forEach(banner => { %>
-        <div class="swiper-slide">
-          <%- include('_hero-card', {
-            cardTitle: banner.title,
-            cardAccent: banner.accent,
-            cardText: banner.description,
-            cardLink: banner.cardLink,
-            cardImage: banner.cardImage,
-            cardImgTitle: banner.cardImgTitle
-          }) %>
+          <% banners.forEach(banner => { %>
+          <div class="swiper-slide">
+            <%- include('_hero-card', { cardTitle: banner.title, cardAccent:
+            banner.accent, cardText: banner.description, cardLink:
+            banner.cardLink, cardImage: banner.cardImage, cardImgTitle:
+            banner.cardImgTitle }) %>
+          </div>
+          <% }); %>
         </div>
-        <% }); %>
-        </div>
-    </div>
+      </div>
 
-      <button type="button" class="hero-section__button hero-section__button--prev">
+      <button
+        type="button"
+        class="hero-section__button hero-section__button--prev"
+      >
         <svg width="26px" height="26px">
           <use href="/images/icons.svg#icon-arrowDown"></use>
         </svg>
       </button>
 
-      <button type="button" class="hero-section__button hero-section__button--next">
+      <button
+        type="button"
+        class="hero-section__button hero-section__button--next"
+      >
         <svg width="26px" height="26px">
           <use href="/images/icons.svg#icon-arrowDown"></use>
         </svg>

@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "sass": "sass src/scss/main.scss public/styles/style.css --watch",
     "sass-build": "sass src/scss/main.scss public/styles/style.css --no-source-map",
-    "browser": "browser-sync start --proxy localhost:3000 --files \"public/**/*, views/**/*\"",
+    "browser": "browser-sync start --proxy localhost:3000 --port 3001 --files \"public/**/*, views/**/*\"",
     "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run browser\""
   },
   "keywords": [],
@@ -17,15 +17,23 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@types/node": "^22.19.17",
     "browser-sync": "^3.0.4",
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.14",
     "prettier-plugin-ejs": "^1.0.3",
+    "prisma": "^7.7.0",
     "sass": "^1.97.3"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.7.0",
+    "@prisma/client": "^7.7.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.1",
     "ejs": "^4.0.1",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "pg": "^8.20.0",
     "swiper": "^12.1.2"
   }
 }

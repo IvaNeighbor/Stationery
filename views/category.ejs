@@ -1,0 +1,44 @@
+<%- include('partials/_header') %>
+<main class="catalog-container">
+  <!-- Блок фільтрів та пошуку -->
+  <aside class="sidebar">
+    <form
+      action="/categories/<%= category.slug %>"
+      method="GET"
+      class="filter-form"
+    >
+      <h3>Пошук</h3>
+      <input
+        type="text"
+        name="search"
+        placeholder="Назва товару..."
+        value="<%= query.search || '' %>"
+      />
+
+      <h3>Фільтр за виробником</h3>
+      <select name="brand">
+        <option value="">Всі бренди</option>
+        <option value="brand1">Brand A</option>
+        <option value="brand2">Brand B</option>
+      </select>
+
+      <button type="submit" class="btn-apply">Застосувати</button>
+    </form>
+  </aside>
+
+  <!-- Список товарів -->
+  <section class="products-grid">
+    <% if (products.length > 0) { %> <% products.forEach(product => { %>
+    <div class="product-card">
+      <img src="<%= product.image %>" alt="<%= product.name %>" />
+      <h4><%= product.name %></h4>
+      <p>Ціна: <%= product.price %> грн</p>
+      <a href="/product/<%= product.id %>" class="btn-detail">Детальніше</a>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <p>Товарів не знайдено за вашим запитом.</p>
+    <% } %>
+  </section>
+</main>
+<%- include('partials/_footer') %>

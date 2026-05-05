@@ -1,0 +1,20 @@
+<%- include('partials/_header') %>
+<main class="product-page">
+  <div class="container">
+    <div class="product-wrapper">
+      <div class="product-image">
+        <img src="<%= product.image %>" alt="<%= product.name %>" />
+      </div>
+      <div class="product-info">
+        <h1><%= product.name %></h1>
+        <p class="brand">
+          Бренд: <strong><%= product.brand %></strong>
+        </p>
+        <p class="description"><%= product.description %></p>
+        <p class="price"><%= product.price %> грн</p>
+        <button class="btn-buy">Додати у кошик</button>
+      </div>
+    </div>
+  </div>
+</main>
+<%- include('partials/_footer') %>
