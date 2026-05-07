@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/swiper-bundle.min.css" />
+  </head>
+  <body>
+    <%- include('partials/_header') %>
+    <!-- Хедер буде всюди -->
+
+    <main>
+      <%- body %>
+      <!-- Сюди автоматично вставиться код з login.ejs або index.ejs -->
+    </main>
+
+    <%- include('partials/_footer') %>
+    <!-- Футер теж всюди -->
+
+    <!-- У layout.ejs перед </body> -->
+    <% if (locals.query && query.added) { %>
+    <div id="toast" class="toast-success">Товар додано у кошик!</div>
+    <script>
+      setTimeout(() => {
+        const toast = document.getElementById("toast");
+        if (toast) toast.classList.add("toast-fade-out");
+        setTimeout(() => toast?.remove(), 500);
+      }, 3000);
+    </script>
+    <% } %>
+
+    <script src="/scripts/swiper-bundle.min.js"></script>
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>

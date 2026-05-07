@@ -1,0 +1,55 @@
+<div class="search-page">
+  <div class="container">
+    <h1 class="search-title">
+      Результати пошуку для: "<span><%= query.q %></span>"
+    </h1>
+    <p class="search-count">Знайдено товарів: <%= products.length %></p>
+
+    <div class="products-grid">
+      <% if (products.length > 0) { %> <% products.forEach(product => { %>
+      <div class="product-card">
+        <!-- Робимо всю картку клікабельною, як ми домовлялися -->
+        <a
+          href="/product/<%= product.id %>"
+          class="product-card__main-link"
+        ></a>
+
+        <div class="product-card__image">
+          <img src="<%= product.image %>" alt="<%= product.name %>" />
+        </div>
+        <div class="product-card__content">
+          <span class="product-card__brand"><%= product.brand %></span>
+          <h3 class="product-card__title"><%= product.name %></h3>
+          <div class="product-card__footer">
+            <span class="product-card__price"><%= product.price %> ₴</span>
+
+            <form
+              action="/cart/add"
+              method="POST"
+              class="product-card__add-form"
+            >
+              <input type="hidden" name="productId" value="<%= product.id %>" />
+              <button type="submit" class="btn-add-cart">
+                <svg width="20" height="20">
+                  <use href="/images/icons.svg#icon-cart"></use>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <% } else { %>
+      <div class="no-results">
+        <div class="no-results__icon">🔍</div>
+        <h3>Нічого не знайдено</h3>
+        <p>
+          На жаль, за вашим запитом товарів не знайдено. Спробуйте інші ключові
+          слова.
+        </p>
+        <a href="/" class="btn-reset">На головну</a>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>

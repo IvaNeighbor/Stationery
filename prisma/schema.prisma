@@ -36,8 +36,8 @@ model Subcategory {
   href       String
   image      String
   categoryId Int
-  category   Category @relation(fields: [categoryId], references: [id])
-  products   Product[] // ДОДАТИ ЦЕЙ РЯДОК
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  products   Product[]
 }
 
 model Product {
@@ -48,7 +48,7 @@ model Product {
   brand         String      // Для фільтрації (вимога ТЗ)
   image         String
   subcategoryId Int
-  subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+  subcategory Subcategory @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
 }
 
 // Користувач

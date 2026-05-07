@@ -1,0 +1,43 @@
+<div class="container" style="max-width: 600px; padding: 50px 0;">
+  <h2>Редагування: <%= product.name %></h2>
+  <form action="/admin/edit/<%= product.id %>" method="POST" class="checkout-form">
+    <div class="form-group">
+      <label>Назва товару</label>
+      <input type="text" name="name" value="<%= product.name %>" class="form-group__input" required>
+    </div>
+    
+    <div class="form-group">
+      <label>Ціна (₴)</label>
+      <input type="number" step="0.01" name="price" value="<%= product.price %>" class="form-group__input" required>
+    </div>
+
+    <div class="form-group">
+      <label>Бренд</label>
+      <input type="text" name="brand" value="<%= product.brand %>" class="form-group__input" required>
+    </div>
+
+    <div class="form-group">
+      <label>URL зображення</label>
+      <input type="text" name="image" value="<%= product.image %>" class="form-group__input" required>
+    </div>
+
+    <div class="form-group">
+      <label>Підкатегорія</label>
+      <select name="subcategoryId" class="form-group__input" required>
+        <% subcategories.forEach(sub => { %>
+          <option value="<%= sub.id %>" <%= sub.id === product.subcategoryId ? 'selected' : '' %>>
+            <%= sub.title %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Опис</label>
+      <textarea name="description" class="form-group__input" rows="4" required><%= product.description %></textarea>
+    </div>
+
+    <button type="submit" class="btn-confirm">Зберегти зміни</button>
+    <a href="/admin" style="display: block; text-align: center; margin-top: 15px; color: #666;">Скасувати</a>
+  </form>
+</div>

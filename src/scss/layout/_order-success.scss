@@ -1,0 +1,35 @@
+.order-success {
+  &__title {
+    color: #1a73e8;
+  }
+
+  &__text {
+    color: #5f6368;
+  }
+
+  &__btn-confirm {
+    display: inline-block;
+    padding: 16px;
+    background-color: #00a046;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: #00a046;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

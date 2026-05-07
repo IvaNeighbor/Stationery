@@ -1,84 +1,163 @@
-require("dotenv").config();
-const { Pool } = require("pg");
-const { PrismaPg } = require("@prisma/adapter-pg");
 const { PrismaClient } = require("@prisma/client");
-const fs = require("fs");
-const path = require("path");
+const { PrismaPg } = require("@prisma/adapter-pg");
+const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
+const data = require("../data.json");
+require("dotenv").config();
 
-// 1. Створюємо пул з'єднань через стандартний драйвер PostgreSQL
+// Створюємо пул з'єднань
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-
-// 2. Створюємо адаптер, який Prisma 7 зможе "зрозуміти"
 const adapter = new PrismaPg(pool);
 
-// 3. Ініціалізуємо клієнт з цим адаптером
+// Ініціалізуємо клієнт з адаптером
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const filePath = path.join(__dirname, "../data.json");
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  console.log("--- Початок повної синхронізації бази даних ---");
 
-  console.log("🔥 Повне очищення бази...");
+  // 1. Очищення бази (порядок важливий через зв'язки)
   await prisma.product.deleteMany();
   await prisma.subcategory.deleteMany();
   await prisma.category.deleteMany();
   await prisma.heroBanner.deleteMany();
-  // Користувачів не видаляємо, щоб не зносити адміна щоразу, або використовуй upsert
+  await prisma.user.deleteMany();
 
-  console.log("📦 Завантаження банерів...");
-  await prisma.heroBanner.createMany({ data: data.heroBanners });
+  const categoriesData = [
+    {
+      name: "Письмове приладдя",
+      slug: "writing-supplies",
+      subs: [
+        { title: "Ручки", slug: "pens", tag: "pen" },
+        { title: "Олівці", slug: "pencils", tag: "pencil" },
+        { title: "Маркери", slug: "markers", tag: "marker" },
+        { title: "Лінери", slug: "liners", tag: "liner" },
+      ],
+    },
+    {
+      name: "Паперова продукція",
+      slug: "paper-products",
+      subs: [
+        { title: "Зошити", slug: "notebooks", tag: "notebook" },
+        { title: "Блокноти", slug: "notepads", tag: "notepad" },
+        { title: "Папір для друку", slug: "printing-paper", tag: "paper" },
+        { title: "Кольоровий папір", slug: "color-paper", tag: "color-paper" },
+      ],
+    },
+    {
+      name: "Школа та навчання",
+      slug: "school",
+      subs: [
+        { title: "Рюкзаки", slug: "backpacks", tag: "backpack" },
+        { title: "Пенали", slug: "pencil-cases", tag: "pencil-case" },
+        { title: "Щоденники", slug: "diaries", tag: "diary" },
+        {
+          title: "Набори для креслення",
+          slug: "drawing-sets",
+          tag: "geometry",
+        },
+      ],
+    },
+    {
+      name: "Офісне приладдя",
+      slug: "office",
+      subs: [
+        { title: "Папки та файли", slug: "folders", tag: "folder" },
+        { title: "Степлери", slug: "staplers", tag: "stapler" },
+        { title: "Органайзери", slug: "organizers", tag: "organizer" },
+        { title: "Скріпки", slug: "paper-clip", tag: "paperclip" },
+      ],
+    },
+    {
+      name: "Творчість та хобі",
+      slug: "creativity",
+      subs: [
+        { title: "Фарби", slug: "paints", tag: "paint" },
+        { title: "Пластилін", slug: "plasticine", tag: "clay" },
+        { title: "Мольберти", slug: "canvases", tag: "easel" },
+        {
+          title: "Набори для творчості",
+          slug: "creativity-kits",
+          tag: "craft",
+        },
+      ],
+    },
+    {
+      name: "Подарунки",
+      slug: "gifts",
+      subs: [
+        { title: "Подарункові бокси", slug: "gift-boxes", tag: "giftbox" },
+        { title: "Елітні ручки", slug: "premium-pens", tag: "luxury-pen" },
+        { title: "Настільні ігри", slug: "board-games", tag: "boardgame" },
+        {
+          title: "Упаковка та листівки",
+          slug: "wrapping-cards",
+          tag: "postcard",
+        },
+      ],
+    },
+  ];
 
-  console.log("📂 Завантаження категорій та підкатегорій...");
-  for (const cat of data.categories) {
-    await prisma.category.create({
+  const brands = [
+    "BIC",
+    "Pilot",
+    "Axent",
+    "Economix",
+    "Kite",
+    "Koh-i-Noor",
+    "Buromax",
+    "Leo",
+  ];
+
+  // 2. Створення категорій та товарів
+  for (const cat of categoriesData) {
+    const createdCat = await prisma.category.create({
       data: {
         name: cat.name,
         slug: cat.slug,
         subcategories: {
-          create: cat.subcategories.map((sub) => ({
+          // ДОДАЄМО i як другий аргумент у map
+          create: cat.subs.map((sub, i) => ({
             title: sub.title,
-            href: sub.href,
-            image: sub.image,
+            href: `/category/${cat.slug}/${sub.slug}`,
+            // Використовуємо i для фіксації зображення
+            image: `https://loremflickr.com/320/240/${sub.tag},stationery?lock=${cat.slug}${i}`,
           })),
         },
       },
+      include: { subcategories: true },
     });
-  }
 
-  console.log("🛍️ Завантаження товарів...");
-  for (const prod of data.products) {
-    const sub = await prisma.subcategory.findFirst({
-      where: { title: prod.subTitle },
-    });
-    if (sub) {
-      await prisma.product.create({
-        data: {
-          name: prod.name,
-          description: prod.description,
-          price: prod.price,
-          brand: prod.brand,
-          image: prod.image,
-          subcategoryId: sub.id,
-        },
-      });
+    for (const sub of createdCat.subcategories) {
+      const subTag = cat.subs.find((s) => s.title === sub.title).tag;
+
+      const products = Array.from({ length: 12 }).map((_, i) => ({
+        name: `${sub.title} ${brands[i % brands.length]} Model-${i + 1}`,
+        description: `Професійний інструмент для роботи та навчання. Висока якість від ${brands[i % brands.length]}.`,
+        price: parseFloat((Math.random() * (850 - 45) + 45).toFixed(2)),
+        brand: brands[i % brands.length],
+        image: `https://loremflickr.com/400/400/${subTag},stationery/all?lock=${sub.id}${i}`,
+        subcategoryId: sub.id,
+      }));
+
+      await prisma.product.createMany({ data: products });
     }
   }
 
-  console.log("🔑 Створення адміна...");
+  await prisma.heroBanner.createMany({ data: data.heroBanners });
+
+  // 3. Базові дані для роботи
   const hashedPassword = await bcrypt.hash("admin123", 10);
-  await prisma.user.upsert({
-    where: { email: "admin@kancsvit.ua" },
-    update: {},
-    create: {
+  await prisma.user.create({
+    data: {
       email: "admin@kancsvit.ua",
-      name: "Головний Адмін",
+      name: "Адмін",
       password: hashedPassword,
       role: "ADMIN",
     },
   });
 
-  console.log("✅ Базу успішно синхронізовано!");
+  console.log("--- Базу успішно заповнено! ---");
+  console.log("Створено: 6 категорій, 24 підкатегорії, 288 товарів.");
 }
 
 main()
@@ -88,5 +167,4 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
-    await pool.end(); // Закриваємо пул драйвера
   });

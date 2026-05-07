@@ -1,0 +1,21 @@
+.search-page {
+  padding: 40px 0;
+
+  .search-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #202124;
+
+    span {
+      color: #1a73e8;
+    }
+  }
+
+  .search-count {
+    text-align: center;
+    color: #5f6368;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+}

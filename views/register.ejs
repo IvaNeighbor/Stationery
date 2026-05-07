@@ -1,0 +1,33 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h1 class="auth-title">Реєстрація</h1>
+    <form action="/register" method="POST" class="auth-form" id="registerForm">
+      <div class="form-group">
+        <label for="name">Ім'я</label>
+        <input type="text" name="name" id="name" required placeholder="Іван" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          required
+          placeholder="example@mail.com"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          placeholder="Мін. 6 символів"
+        />
+      </div>
+      <button type="submit" class="btn-auth">Створити акаунт</button>
+    </form>
+    <p class="auth-footer">Вже є акаунт? <a href="/login">Увійти</a></p>
+  </div>
+</div>

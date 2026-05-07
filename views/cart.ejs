@@ -1,0 +1,193 @@
+<main class="cart-page">
+  <div class="container">
+    <h1 class="cart-page__title">Оформлення замовлення</h1>
+
+    <div class="cart-grid">
+      <section class="cart-items">
+        <% if (products.length > 0) { %>
+        <!-- Показуємо кошик і форму лише якщо є товари -->
+        <div class="cart-grid">
+          <section class="cart-items">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th>Товар</th>
+                  <th>Ціна</th>
+                  <th>Кількість</th>
+                  <th>Сума</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% products.forEach(product => { %>
+                <tr>
+                  <td>
+                    <div class="cart-product">
+                      <img
+                        src="<%= product.image %>"
+                        alt="<%= product.name %>"
+                        width="50"
+                      />
+                      <span><%= product.name %></span>
+                    </div>
+                  </td>
+                  <td>
+                    <%= product.price %>
+                    ₴
+                  </td>
+                  <td>
+                    <div class="qty-control">
+                      <form action="/cart/update" method="POST">
+                        <input
+                          type="hidden"
+                          name="productId"
+                          value="<%= product.id %>"
+                        />
+                        <button name="action" value="decrease">-</button>
+                        <span class="qty-num"><%= product.quantity %></span>
+                        <button name="action" value="increase">+</button>
+                      </form>
+                    </div>
+                  </td>
+                  <td>
+                    <%= product.subtotal.toFixed(2) %>
+                    ₴
+                  </td>
+                  <td>
+                    <form action="/cart/update" method="POST">
+                      <input
+                        type="hidden"
+                        name="productId"
+                        value="<%= product.id %>"
+                      />
+                      <button name="action" value="remove" class="btn-remove">
+                        ×
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+            <div class="cart-page__total">
+              <strong class="cart-page__total-text"
+                >Разом до сплати:
+                <span
+                  ><%= total.toFixed(2) %>
+                  ₴</span
+                ></strong
+              >
+            </div>
+          </section>
+
+          <!-- Форма оформлення -->
+          <form
+            action="/checkout"
+            method="POST"
+            class="checkout-form"
+            id="checkoutForm"
+          >
+            <div class="form-group">
+              <label class="form-group__label">Ваше ім'я</label>
+              <input
+                type="text"
+                name="name"
+                class="form-group__input"
+                required
+                placeholder="Петро Петров"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-group__label">Телефон</label>
+              <input
+                type="tel"
+                name="phone"
+                class="form-group__input"
+                required
+                placeholder="+380XXXXXXXXX"
+                pattern="^\+380\d{9}$"
+                title="Формат: +380 та 9 цифр номера"
+              />
+            </div>
+
+            <!-- Чекбокс тепер зв'язаний з текстом через id/for -->
+            <div class="form-group checkbox-group">
+              <label for="deliveryRequired" class="checkbox-group__label"
+                >Потрібна доставка (Нова Пошта)</label
+              >
+              <input
+                type="checkbox"
+                id="deliveryRequired"
+                name="delivery"
+                class="checkbox-group__input"
+              />
+            </div>
+
+            <!-- Прихований блок доставки -->
+            <div id="deliveryFields" class="delivery-fields">
+              <div class="form-group">
+                <label class="form-group__label">Місто</label>
+                <input
+                  type="text"
+                  name="city"
+                  class="form-group__input"
+                  placeholder="Суми"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-group__label">Номер відділення</label>
+                <input
+                  type="number"
+                  name="warehouse"
+                  min="1"
+                  oninput="if (this.value < 1) this.value = 1;"
+                  class="form-group__input"
+                  placeholder="1"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-confirm">
+              Підтвердити замовлення
+            </button>
+          </form>
+        </div>
+        <% } else { %>
+        <!-- Стан для порожнього кошика -->
+        <div class="cart-empty">
+          <h2 class="cart-empty__title">У вашому кошику поки що порожньо</h2>
+          <p class="cart-empty__text">
+            Додайте товари, щоб оформити замовлення.
+          </p>
+          <a
+            href="/"
+            class="btn-confirm"
+            style="display: inline-block; width: auto; margin-top: 20px"
+            >На головну</a
+          >
+        </div>
+        <% } %>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script>
+  const deliveryCheckbox = document.getElementById("deliveryRequired");
+  const deliveryFields = document.getElementById("deliveryFields");
+
+  deliveryCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      deliveryFields.classList.add("is-active");
+      deliveryFields
+        .querySelectorAll("input")
+        .forEach((i) => (i.required = true));
+    } else {
+      deliveryFields.classList.remove("is-active");
+      deliveryFields
+        .querySelectorAll("input")
+        .forEach((i) => (i.required = false));
+    }
+  });
+</script>

@@ -1,18 +1,23 @@
-// 1. Налаштування та змінні
 @import "utils/variables";
 @import "utils/fonts";
 @import "utils/utils";
 
-// 2. Базові стилі
 @import "base";
 
-// 3. Компоненти (маленькі блоки)
 @import "components/category-menu";
 @import "components/dropdown-menu";
 @import "components/hero-card";
 
-// 4. Структура (великі блоки)
 @import "layout/container";
 @import "layout/header";
+@import "layout/footer";
+@import "layout/login-reg";
+@import "layout/catalog";
+@import "layout/product";
+@import "layout/search-results";
+@import "layout/category-main";
+@import "layout/order-success";
+@import "layout/cart";
+@import "layout/dashboard";
 @import "layout/section";
 @import "layout/hero-section";

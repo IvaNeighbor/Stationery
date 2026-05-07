@@ -6,8 +6,13 @@
           <img src="/images/logo.svg" alt="logo" />
         </a>
 
-        <form class="header__search search-form">
-          <input type="text" name="search" class="search-form__input" placeholder="Пошук зошитів, ручок та іншого..." />
+        <form action="/search" method="GET" class="header__search search-form">
+          <input
+            type="text"
+            name="q"
+            class="search-form__input"
+            placeholder="Пошук зошитів, ручок та іншого..."
+          />
           <button type="submit" class="search-form__button cursor">
             <svg width="24px" height="24px">
               <use href="/images/icons.svg#icon-search"></use>
@@ -17,23 +22,55 @@
 
         <div class="header__actions">
           <a href="/schoolkits" class="header__action">
-            <svg class="header__action-icon header__action-icon--deal" width="32px" height="32px">
+            <svg
+              class="header__action-icon header__action-icon--deal"
+              width="32px"
+              height="32px"
+            >
               <use href="/images/icons.svg#icon-deal"></use>
             </svg>
-            <span class="header__action-text header__action-text--deal">School deals</span>
+            <span class="header__action-text header__action-text--deal"
+              >School deals</span
+            >
           </a>
+          <% if (locals.userName) { %>
+          <a href="/logout" class="header__action logout-link">
+            <svg class="header__action-icon" width="24px" height="24px">
+              <use href="/images/icons.svg#icon-exit"></use>
+            </svg>
+            <span class="header__action-text">Вийти</span>
+          </a>
+          <% } else { %>
           <a href="/login" class="header__action">
             <svg class="header__action-icon" width="32px" height="32px">
               <use href="/images/icons.svg#icon-login"></use>
             </svg>
-            <span class="header__action-text">Sign Up/Sign In</span>
+            <span class="header__action-text">Увійти</span>
           </a>
-          <button type="button" class="header__action cursor">
-            <svg class="header__action-icon" width="32px" height="32px">
-              <use href="/images/icons.svg#icon-cart"></use>
+          <% } %>
+          <a href="/cart" class="header__action header__cart-link">
+            <div class="cart-wrapper">
+              <svg class="cart-icon">
+                <use href="/images/icons.svg#icon-cart"></use>
+              </svg>
+              <% if (locals.cartCount > 0) { %>
+              <!-- Використовуємо вже пораховане на сервері число -->
+              <span class="cart-badge"><%= cartCount %></span>
+              <% } %>
+            </div>
+          </a>
+          <% if (locals.userRole === 'ADMIN') { %>
+          <a
+            href="/admin"
+            class="header__action admin-link"
+            style="color: var(--color-brand-dark)"
+          >
+            <span class="header__action-text">Адмінка</span>
+            <svg class="header__action-icon" width="24" height="24">
+              <use href="/images/icons.svg#icon-settings"></use>
             </svg>
-            <span class="header__action-text">Кошик</span>
-          </button>
+          </a>
+          <% } %>
         </div>
       </div>
 
@@ -53,13 +90,13 @@
                 <% category.subcategories.forEach(sub => { %>
                 <a href="<%= sub.href %>" class="dropdown-menu__item">
                   <div class="dropdown-menu__image">
-                    <img src="<%= sub.image %>" alt="<%= sub.title %>">
+                    <img src="<%= sub.image %>" alt="<%= sub.title %>" />
                   </div>
                   <span class="dropdown-menu__title"><%= sub.title %></span>
                 </a>
                 <% }); %>
               </div>
-               </div>
+            </div>
           </li>
           <% }); %>
         </ul>

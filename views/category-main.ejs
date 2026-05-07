@@ -1,0 +1,18 @@
+<main class="category-hub">
+  <div class="container">
+    <h1 class="category-hub__title">Розділ: <%= category.name %></h1>
+
+    <div class="subcategory-grid">
+      <% category.subcategories.forEach(sub => { %>
+      <a href="<%= sub.href %>" class="subcategory-card">
+        <div class="subcategory-card__image">
+          <img src="<%= sub.image %>" alt="<%= sub.title %>" />
+        </div>
+        <div class="subcategory-card__content">
+          <h3 class="subcategory-card__title"><%= sub.title %></h3>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</main>

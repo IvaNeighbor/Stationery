@@ -1,0 +1,79 @@
+<div class="catalog-layout container">
+    <!-- Сайдбар з фільтрами -->
+<aside class="catalog-sidebar">
+    <div class="filter-block">
+        <form action="" method="GET" id="filterForm">
+            <h3>Пошук</h3>
+            <input type="text" name="search" value="<%= query.search || '' %>" placeholder="Назва товару...">
+
+            <h3>Виробник</h3>
+            <div class="brand-filters">
+                <label class="filter-item">
+                    <input type="radio" name="brand" value="" <%= !query.brand ? 'checked' : '' %> onchange="this.form.submit()">
+                    <span>Всі бренди</span>
+                </label>
+                <% brands.forEach(brand => { %>
+                    <label class="filter-item">
+                        <input type="radio" name="brand" value="<%= brand %>" 
+                            <%= query.brand === brand ? 'checked' : '' %> 
+                            onchange="this.form.submit()">
+                        <span class="brand-name"><%= brand %></span>
+                    </label>
+                <% }) %>
+            </div>
+            
+            <% if (query.brand || query.search) { %>
+                <a href="?" class="btn-clear">Очистити все</a>
+            <% } %>
+        </form>
+    </div>
+</aside>
+
+    <!-- Основний контент -->
+    <main class="catalog-main">
+        <!-- Зверни увагу: використовуємо subcategory, як у роутері -->
+        <h1 class="category-title"><%= subcategory.title %></h1>
+        
+        <div class="products-grid">
+            <% if (products.length > 0) { %>
+                <% products.forEach(product => { %>
+<div class="product-card">
+    <!-- Це посилання "накриє" всю картку -->
+    <a href="/product/<%= product.id %>" class="product-card__main-link"></a>
+    
+    <div class="product-card__image">
+        <img src="<%= product.image %>" alt="<%= product.name %>">
+    </div>
+    <div class="product-card__content">
+        <span class="product-card__brand"><%= product.brand %></span>
+        <!-- Залишаємо назву просто текстом, бо лінк уже зверху -->
+        <h3 class="product-card__title"><%= product.name %></h3>
+        <div class="product-card__footer">
+            <span class="product-card__price"><%= product.price %> ₴</span>
+            <!-- Кнопка кошика має бути ПОВЕРХ лінка -->
+            <form action="/cart/add" method="POST" class="product-card__add-form">
+                <input type="hidden" name="productId" value="<%= product.id %>">
+                <button type="submit" class="btn-add-cart">
+                    <svg width="20" height="20"><use href="/images/icons.svg#icon-cart"></use></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+                <% }) %>
+            <% } else { %>
+    <div class="no-results">
+        <div class="no-results__icon">🔍</div>
+        <h3>Нічого не знайдено</h3>
+        <p>
+            На жаль, за запитом 
+            "<strong><%= query.search || 'фільтрами' %></strong>" 
+            товарів немає.
+        </p>
+        <!-- Використовуй готовий href, це надійніше -->
+        <a href="<%= subcategory.href %>" class="btn-reset">Скинути пошук</a>
+    </div>
+<% } %>
+        </div>
+    </main>
+</div>

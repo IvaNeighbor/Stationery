@@ -32,24 +32,22 @@
   }
 
   .swiper-pagination {
-    bottom: 40px !important; // Відступ знизу
-    left: 80px !important; // Зміщуємо ліворуч (рівняємо по тексту)
-    width: auto !important; // Щоб контейнер не розтягувався на всю ширину
+    bottom: 40px !important;
+    left: 80px !important;
+    width: auto !important;
     text-align: left;
     z-index: 10;
   }
 
-  // Стилізуємо кожну окрему крапочку
   .swiper-pagination-bullet {
     width: 8px;
     height: 8px;
-    background-color: #ffffff !important; // Використовуй !important, якщо колір не міняється
+    background-color: #ffffff !important;
     opacity: 0.5;
     border-radius: 50%;
-    margin: 0 4px !important; // Відступи між крапками
+    margin: 0 4px !important;
     transition: all 0.3s ease;
 
-    // Стиль для активної крапки (робимо її "пігулкою")
     &-active {
       width: 30px;
       border-radius: 4px;
